@@ -32,7 +32,7 @@ function App() {
   const handleSubmit = async () => {
     setLoading(true); setError(""); setResult(null);
     try {
-      const response = await axios.post("/api/summarize", { text });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || ""}/api/summarize`, { text });
       const entry = { ...response.data, preview: text.slice(0, 80) + (text.length > 80 ? "..." : ""), time: new Date().toLocaleTimeString() };
       const newH = [entry, ...history].slice(0, 10);
       setHistory(newH);
